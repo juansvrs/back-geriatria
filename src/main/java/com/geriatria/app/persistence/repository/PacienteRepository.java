@@ -1,0 +1,7 @@
+package com.geriatria.app.persistence.repository;
+
+import com.geriatria.app.persistence.entity.PacienteEntity;
+import org.springframework.data.repository.ListCrudRepository;
+
+public interface PacienteRepository extends ListCrudRepository<PacienteEntity,String> {
+}
