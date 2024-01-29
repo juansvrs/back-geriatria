@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PacienteEntity {
     @Id
-    @Column(name="id_paciente", nullable = false)
+    @Column(name="id_paciente")
     private String idPaciente;
 
     @Column(name = "nombre", length = 55)

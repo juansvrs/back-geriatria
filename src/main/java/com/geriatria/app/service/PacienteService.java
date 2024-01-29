@@ -25,8 +25,8 @@ public class PacienteService {
         return this.pacienteRepository.findById(idPaciente).orElse(null);
     }
 
-    public  PacienteEntity save(PacienteEntity actividad){
-        return this.pacienteRepository.save(actividad);
+    public  PacienteEntity save(PacienteEntity paciente){
+        return this.pacienteRepository.save(paciente);
     }
     public void delete(String idPaciente){
         this.pacienteRepository.deleteById(idPaciente);
@@ -35,6 +35,16 @@ public class PacienteService {
     public boolean exists(String idPaciente){
         return pacienteRepository.existsById(idPaciente);
     }
+
+
+    public List<PacienteEntity> getAllByNombreAsc() {
+        return this.pacienteRepository.findAllByOrderByNombreAsc();
+    }
+
+    public List<PacienteEntity> getAllByNombreDesc() {
+        return this.pacienteRepository.findAllByOrderByNombreDesc();
+    }
+
 }
 
 

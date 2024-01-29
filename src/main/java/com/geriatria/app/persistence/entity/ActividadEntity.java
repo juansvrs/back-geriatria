@@ -19,11 +19,14 @@ public class ActividadEntity {
     @Column(name="id_actividad", nullable = false)
     private Integer idActividad;
 
-    @Column(name = "nombre", length = 30,unique = true)
+    @Column(name = "nombre",length = 255)
     private String nombre;
 
-    @Column(nullable = false,length = 200)
+    @Column(nullable = false,length = 255)
     private String descripcion;
+
+    @Column(name = "tipo_actividad")
+    private String tipoActividad;
 
     @Column(name = "hora_recomendada")
     private String hora;

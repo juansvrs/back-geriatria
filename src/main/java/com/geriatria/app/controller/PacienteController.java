@@ -53,4 +53,20 @@ public class PacienteController {
         }
         return ResponseEntity.badRequest().build();
     }
+/*
+    @GetMapping("/buscar/{partialId}")
+    public ResponseEntity<List<PacienteEntity>> findByPartialId(@PathVariable String partialId) {
+        return ResponseEntity.ok(this.pacienteService.findByPartialId(partialId));
+    }*/
+
+    @GetMapping("/asc")
+    public ResponseEntity<List<PacienteEntity>> getAllByNombreAsc() {
+        return ResponseEntity.ok(this.pacienteService.getAllByNombreAsc());
+    }
+
+    @GetMapping("/desc")
+    public ResponseEntity<List<PacienteEntity>> getAllByNombreDesc() {
+        return ResponseEntity.ok(this.pacienteService.getAllByNombreDesc());
+    }
+
 }
