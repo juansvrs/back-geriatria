@@ -38,4 +38,9 @@ public class ActividadEntity {
     private List<PacienteActividadEntity> actividadesPaciente;
 
 
+    /*
+    @OneToMany(mappedBy = "actividad",fetch = FetchType.LAZY)
+    private List<RegistroEntity> registros;*/
+
+
 }

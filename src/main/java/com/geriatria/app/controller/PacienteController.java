@@ -7,12 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/pacientes")
 public class PacienteController {
 
     private final PacienteService pacienteService;
+    Logger logger = Logger.getLogger(PacienteController.class.getName());
 
     @Autowired
     public PacienteController(PacienteService pacienteService) {
@@ -31,10 +33,15 @@ public class PacienteController {
 
     @PostMapping()
     public ResponseEntity<PacienteEntity> add(@RequestBody PacienteEntity paciente) {
-        if (paciente.getIdPaciente() == null || this.pacienteService.exists(paciente.getIdPaciente())) {
+        logger.warning("Entra al metodo en el serivico");
+        /*if (paciente.getIdPaciente() == null || this.pacienteService.exists(paciente.getIdPaciente())) {
+            logger.warning("Entra al condicional del addPaciente");
+
             return ResponseEntity.ok(this.pacienteService.save(paciente));
-        }
-        return ResponseEntity.badRequest().build();
+        }*/
+        return ResponseEntity.ok(this.pacienteService.save(paciente));
+
+        //return ResponseEntity.badRequest().build();
     }
 
     @PutMapping()
@@ -53,11 +60,7 @@ public class PacienteController {
         }
         return ResponseEntity.badRequest().build();
     }
-/*
-    @GetMapping("/buscar/{partialId}")
-    public ResponseEntity<List<PacienteEntity>> findByPartialId(@PathVariable String partialId) {
-        return ResponseEntity.ok(this.pacienteService.findByPartialId(partialId));
-    }*/
+
 
     @GetMapping("/asc")
     public ResponseEntity<List<PacienteEntity>> getAllByNombreAsc() {

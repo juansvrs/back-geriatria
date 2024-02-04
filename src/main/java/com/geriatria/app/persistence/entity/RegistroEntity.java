@@ -1,6 +1,7 @@
 package com.geriatria.app.persistence.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,20 +23,29 @@ public class RegistroEntity {
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    @Column
-    private Boolean estado;
+    @Column(columnDefinition = "varchar(255) default 'sin realizar'")
+    private String estado;
 
-    @Column(name = "id_paciente", insertable = false, updatable = false)
+    @Column
+    private String detallesRegistro;
+
+    @Column(name = "id_paciente",nullable = false)
     private String idPaciente;
 
-    @Column(name = "id_actividad", insertable = false, updatable = false)
+    @Column(name = "id_actividad", nullable = false)
     private Integer idActividad;
 
+
+    /*
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "id_paciente", referencedColumnName = "id_paciente",insertable = false,updatable = false)
     private PacienteEntity paciente;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name ="id_actividad",referencedColumnName ="id_actividad",insertable = false,updatable = false )
     private ActividadEntity actividad;
+
+     */
 }
