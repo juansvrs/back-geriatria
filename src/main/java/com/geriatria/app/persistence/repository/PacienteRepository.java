@@ -10,4 +10,8 @@ public interface PacienteRepository extends ListCrudRepository<PacienteEntity,St
     List<PacienteEntity> findAllByOrderByNombreAsc();
 
     List<PacienteEntity> findAllByOrderByNombreDesc();
+
+    List<PacienteEntity> findAllByOrderByIdPacienteDesc();
+
+    List<PacienteEntity> findAllByOrderByIdPacienteAsc();
 }

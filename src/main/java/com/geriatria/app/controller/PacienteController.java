@@ -72,4 +72,14 @@ public class PacienteController {
         return ResponseEntity.ok(this.pacienteService.getAllByNombreDesc());
     }
 
+    @GetMapping("/id/asc")
+    public ResponseEntity<List<PacienteEntity>> getAllByIdPacienteAsc() {
+        return ResponseEntity.ok(this.pacienteService.getAllByIdPacienteAsc());
+    }
+
+    @GetMapping("/id/desc")
+    public ResponseEntity<List<PacienteEntity>> getAllByIdPacienteDesc() {
+        return ResponseEntity.ok(this.pacienteService.getAllByIdPacienteDesc());
+    }
+
 }

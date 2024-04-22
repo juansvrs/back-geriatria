@@ -45,6 +45,14 @@ public class PacienteService {
         return this.pacienteRepository.findAllByOrderByNombreDesc();
     }
 
+    public List<PacienteEntity> getAllByIdPacienteAsc() {
+        return this.pacienteRepository.findAllByOrderByIdPacienteAsc();
+    }
+
+    public List<PacienteEntity> getAllByIdPacienteDesc() {
+        return this.pacienteRepository.findAllByOrderByIdPacienteDesc();
+    }
+
 }
 
 
