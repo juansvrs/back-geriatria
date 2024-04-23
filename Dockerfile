@@ -2,7 +2,7 @@
 
 FROM gradle:7.4.0-jdk17 AS build
 COPY . .
-RUN ./gradlew clean build -x test
+RUN gradle clean build -x test
 
 # Etapa de producción
 FROM openjdk:17.0.1-jdk-slim
