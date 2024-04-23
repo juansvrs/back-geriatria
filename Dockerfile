@@ -1,14 +1,11 @@
 # Usa una imagen base de OpenJDK 17
-FROM amazoncorretto:17-alpine
 
-# Establece el directorio de trabajo en /app
-WORKDIR /app
+FROM gradle:7.4.0-jdk17 AS build
+COPY . .
+RUN ./gradlew clean build -x test
 
-# Copia el archivo JAR construido en la fase de construcción
-COPY build/libs/*.jar app.jar
-
-# Expone el puerto 8080 para que se pueda acceder a la aplicación desde fuera del contenedor
+# Etapa de producción
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /build/libs/geriatria-vida-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
-
-# Comando para ejecutar la aplicación cuando se inicie el contenedor
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-jar","demo.jar"]
