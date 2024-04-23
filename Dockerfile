@@ -1,15 +1,14 @@
-FROM ubuntu:latest AS build
+# Usa una imagen base de OpenJDK 17
+FROM adoptopenjdk/openjdk17:alpine-slim
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
-COPY . .
+# Establece el directorio de trabajo en /app
+WORKDIR /app
 
-RUN ./gradlew bootJar --no-daemon
+# Copia el archivo JAR construido en la fase de construcción
+COPY build/libs/*.jar app.jar
 
-FROM openjdk:17-jdk-slim
-
+# Expone el puerto 8080 para que se pueda acceder a la aplicación desde fuera del contenedor
 EXPOSE 8080
 
-COPY --from=build /build/libs/geriatria-vida-0.0.1-SNAPSHOT.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Comando para ejecutar la aplicación cuando se inicie el contenedor
+CMD ["java", "-jar", "app.jar"]
