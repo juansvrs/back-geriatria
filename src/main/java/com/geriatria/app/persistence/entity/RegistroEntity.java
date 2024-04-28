@@ -1,6 +1,7 @@
 package com.geriatria.app.persistence.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class RegistroEntity {
     private Long id;
 
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "UTC")
     private Date fecha;
 
     @Column(columnDefinition = "varchar(255) default 'sin realizar'")

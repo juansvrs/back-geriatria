@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -50,15 +53,30 @@ public class RegistroController {
         return ResponseEntity.ok(this.registroService.getAllByPaciente(idPaciente));
     }
 
+    //Todos los registros de un paciente
     @GetMapping("/actividad/{idActividad}")
     public ResponseEntity<List<RegistroEntity>> getAllByActividad(@PathVariable Integer idActividad) {
         return ResponseEntity.ok(this.registroService.getAllByActividad(idActividad));
     }
 
+    //TODOS LOS REGISTROS DE UN PACIENTE POR CIERTA ACTIVIDAD
     @GetMapping("/paciente/{idPaciente}/actividad/{idActividad}")
     public ResponseEntity<List<RegistroEntity>> getAllByPacienteAndActividad(@PathVariable String idPaciente, @PathVariable Integer idActividad) {
         return ResponseEntity.ok(this.registroService.getAllByPacienteAndActividad(idPaciente, idActividad));
     }
 
     //Podria hacer una ruta para obtener los registros de un paciente en una fecha especifica
+
+    @GetMapping("/paciente/{idPaciente}/fecha/{fecha}")
+    public ResponseEntity<List<RegistroEntity>> getAllByPacienteAndFecha(@PathVariable String idPaciente, @PathVariable String fecha) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = formatter.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok(this.registroService.getAllByPacienteAndFecha(idPaciente, date));
+
+    }
 }
