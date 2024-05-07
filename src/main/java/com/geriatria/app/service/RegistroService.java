@@ -54,6 +54,8 @@ public class RegistroService {
         return this.registroRepository.findAllByPacienteAndFecha(idPaciente, fecha);
     }
 
+
+
 }
 
 

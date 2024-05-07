@@ -79,4 +79,15 @@ public class RegistroController {
         return ResponseEntity.ok(this.registroService.getAllByPacienteAndFecha(idPaciente, date));
 
     }
+
+    @PutMapping("/{idRegistro}")
+    public ResponseEntity<RegistroEntity> updateById(@PathVariable Long idRegistro, @RequestBody RegistroEntity registroEntity) {
+        RegistroEntity existingRegistro = this.registroService.get(idRegistro);
+        if (existingRegistro != null) {
+            //registroEntity.setId(idRegistro);
+            return ResponseEntity.ok(this.registroService.save(registroEntity));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
