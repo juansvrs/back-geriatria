@@ -9,6 +9,8 @@ import com.geriatria.app.persistence.repository.RegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -52,6 +54,12 @@ public class RegistroService {
 
     public List<RegistroEntity> getAllByPacienteAndFecha(String idPaciente, Date fecha) {
         return this.registroRepository.findAllByPacienteAndFecha(idPaciente, fecha);
+    }
+
+    public void deleteRegistrosOlderThanSixMonths() {
+        LocalDate sixMonthsAgo = LocalDate.now().minusMonths(6);
+        Date fechaLimite = Date.from(sixMonthsAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        registroRepository.deleteAllWithFechaBefore(fechaLimite);
     }
 
 

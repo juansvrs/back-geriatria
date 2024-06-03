@@ -90,4 +90,10 @@ public class RegistroController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/eliminarAntiguos")
+    public ResponseEntity<Void> deleteRegistrosOlderThanSixMonths() {
+        this.registroService.deleteRegistrosOlderThanSixMonths();
+        return ResponseEntity.ok().build();
+    }
 }

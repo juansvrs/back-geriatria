@@ -1,5 +1,6 @@
 package com.geriatria.app.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,12 @@ public class TipoActividadEntity {
 
     @Column
     private String nombre;
+
+    @OneToOne
+    @JsonIgnore
+    @JoinColumn(name ="id_actividad",referencedColumnName ="id_actividad",insertable = false,updatable = false )
+    private ActividadEntity actividad;
+
 
 
 }

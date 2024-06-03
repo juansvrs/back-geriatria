@@ -28,17 +28,12 @@ public class RegistroEntity {
     @Column(columnDefinition = "varchar(255) default 'sin realizar'")
     private String estado;
 
-    @Column
-    private String detallesRegistro;
-
     @Column(name = "id_paciente",nullable = false)
     private String idPaciente;
 
     @Column(name = "id_actividad", nullable = false)
     private Integer idActividad;
 
-
-    /*
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "id_paciente", referencedColumnName = "id_paciente",insertable = false,updatable = false)
@@ -49,5 +44,5 @@ public class RegistroEntity {
     @JoinColumn(name ="id_actividad",referencedColumnName ="id_actividad",insertable = false,updatable = false )
     private ActividadEntity actividad;
 
-     */
+
 }

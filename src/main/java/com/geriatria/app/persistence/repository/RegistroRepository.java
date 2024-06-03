@@ -1,6 +1,8 @@
 package com.geriatria.app.persistence.repository;
 
 import com.geriatria.app.persistence.entity.RegistroEntity;
+import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -20,4 +22,9 @@ public interface RegistroRepository extends ListCrudRepository<RegistroEntity,Lo
 
     @Query("SELECT r FROM RegistroEntity r WHERE r.idPaciente = :idPaciente AND r.fecha = :fecha")
     List<RegistroEntity> findAllByPacienteAndFecha(@Param("idPaciente") String idPaciente, @Param("fecha") Date fecha);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM RegistroEntity r WHERE r.fecha < :fechaLimite")
+    void deleteAllWithFechaBefore(@Param("fechaLimite") Date fechaLimite);
 }
