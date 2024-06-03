@@ -34,8 +34,8 @@ El componente cuenta con la dependencia lombok y JPA que permite la creacion aut
 el framework las crea segun las etiquetas que presenten las entidades, no es necesario ejecutar ningun script de MySql en ningun momento.
 
 ## Levantamiento y Docker
-Ejecuta el comando de construcción Gradle
-RUN gradle clean build 
+Ejecuta el comando de construcción Gradle (importante Java 17 en el entorno de ejecucion, de otra manera no puede ejecutar comandos ./gradlew para spring 3)
+RUN gradle clean build : ./gradlew clean build bootRun
 
 En caso de utilizar solo es necesario utilizar "docker compose up -d" y docker crea la imagen de springboot y la imagen de MySql. Expone en dllo el puerto 8080 pero docker lo hace exponiendo el 8082
 Para acceder al la app de sprinBoot la ruta seria http://localhost:8082/api en el caso de docker y  http://localhost:8080/api en ambiente local.
