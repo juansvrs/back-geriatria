@@ -4,7 +4,7 @@ FROM gradle:7.4.0-jdk17 AS build
 # Define la ubicación del directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Copia el archivo build.gradle y settings.gradle
+# Copia el archivo build.gradle y settings.gradle si es necesario
 COPY build.gradle .
 COPY settings.gradle .
 
@@ -26,5 +26,5 @@ COPY --from=build /app/build/libs/*.jar app.jar
 # Expone el puerto 8080 (puedes modificarlo si tu aplicación usa otro puerto)
 EXPOSE 8080
 
-# Comando de entrada para ejecutar la aplicación Spring Boot
+# Comando de entrada para ejecutar la aplicación Spring Boota
 ENTRYPOINT ["java","-jar","app.jar"]
